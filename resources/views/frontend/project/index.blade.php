@@ -169,7 +169,7 @@ Fauzi Agustian | Project
             <div class="row-custom-main">
                 <div id="tab-21" class="tab-content active">
                     <div class="row row-custom-inr">
-                        <div class="col-lg-3 col-otr" v-for="pj in project" v-if="pj.status.id == 1 || pj.status.id == 2">
+                        <div class="col-lg-3 col-otr" v-for="pj in project" v-if="pj.status?.id == 1 || pj.status?.id == 2">
                             <div class="col-inr box-1">
 
                                 <div class="cover-img-otr">
@@ -221,10 +221,11 @@ Fauzi Agustian | Project
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
 <script>
+    const project = <?php echo Illuminate\Support\Js::from($project) ?>;
     let app = new Vue({
         el: '#app',
         data: {
-            project: JSON.parse(String.raw `{!! json_encode($project) !!}`),
+            project,
             name: '',
             user_id: '',
             status_id: '3',

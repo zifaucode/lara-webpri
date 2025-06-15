@@ -103,7 +103,7 @@ Fauzi Agustian
                 </a>
             </div>
             <div class="row row-custom">
-                <div class="col-lg-3 col-otr " v-for="pj in project" v-if="pj.status.id == 1 || pj.status.id == 2">
+                <div class="col-lg-3 col-otr " v-for="pj in project" v-if="pj.status?.id == 1 || pj.status?.id == 2">
                     <div class="col-inr box-1">
                         <div class="cover-img-otr">
                             <a href="">
@@ -111,7 +111,7 @@ Fauzi Agustian
 
                             </a>
                             <div class="time-otr">
-                                <span class="heading-SB timer" style="color:black;">@{{pj.status.name}}</span>
+                                <span class="heading-SB timer" style="color:black;">@{{pj.status?.name}}</span>
                             </div>
                             <span class="heart-icon-otr2 heart1">
                                 <i class="ri-heart-line heart-icon2 heart-1"></i>
@@ -159,7 +159,7 @@ Fauzi Agustian
                             <img class="blog-img" :src="'/files/blog/' + bl.image" height="240px" alt="blog" />
                         </a>
                         <div class="content-otr">
-                            <p class="date-otr heading-S">• by @{{ bl.users.username }} <span class="date-inr"> • @{{ bl.date }}</span></p>
+                            <p class="date-otr heading-S">• by @{{ bl.users?.username }} <span class="date-inr"> • @{{ bl.date }}</span></p>
                             <a :href="'/blog/detail/' + bl.id" class="heading heading-h5">@{{bl.title}}</a>
                             <p class="desc heading-S">
                                 @{{ bl.content | liveSubstr}} <a :href="'/blog/detail/' + bl.id" class="date-otr heading-S">Selengkapnya --></a>
@@ -191,11 +191,13 @@ Fauzi Agustian
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
 <script>
+    const blog = <?php echo Illuminate\Support\Js::from($blog) ?>;
+    const project = <?php echo Illuminate\Support\Js::from($project) ?>;
     let app = new Vue({
         el: '#app',
         data: {
-            blog: JSON.parse(String.raw `{!! json_encode($blog) !!}`),
-            project: JSON.parse(String.raw `{!! json_encode($project) !!}`),
+            blog,
+            project,
         },
         methods: {
 
